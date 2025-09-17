@@ -6,7 +6,7 @@ public class horseSim {
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
         
-        // Stats
+        // Player Stats
         int speed = 1;  
         int power = 1;   
         int stamina = 1;   
@@ -17,7 +17,7 @@ public class horseSim {
         System.out.println("Train your horse but be careful to watch its energy levels");
         
         String horseArt = """
-               .''
+               .'' 
         ._.-.___.' (`\\
        //(        ( `'
        '/ )\\ ).__. ) 
@@ -40,6 +40,10 @@ public class horseSim {
             System.out.println("Speed: " + speed);
             System.out.println("Power: " + power);
             System.out.println("Stamina: " + stamina);
+
+            int successChance = energy * 10;
+            if (successChance > 95) successChance = 95; // cap at 95%
+            System.out.println("\nTraining success chance: " + successChance + "%");
 
             System.out.println("\nChoose an action: ");
             System.out.println("1. Train Speed");
@@ -100,19 +104,47 @@ public class horseSim {
             turn++;
         }
 
-        System.out.println("\n--- Game Over ---");
-        System.out.println(horseName + "'s final stats:");
-        System.out.println("Speed: " + speed);
-        System.out.println("Power: " + power);
-        System.out.println("Stamina: " + stamina);
-        System.out.println("Energy: " + energy);
-        
+        // Opponent Stats (Base 8 + randomness)
+        Random randOpponent = new Random();
+        int oppSpeed = 8 + randOpponent.nextInt(11) - 5;   // ±5
+        int oppPower = 8 + randOpponent.nextInt(11) - 5;
+        int oppStamina = 8 + randOpponent.nextInt(11) - 5;
+
+        System.out.println("\n--- Final Race ---");
+        System.out.println("Your horse " + horseName + " VS Speed Biscuit 🐴");
+
+        // Race narration
+        System.out.println("\n🏁 The race begins!");
+        System.out.println(horseName + " bursts out of the gate...");
+        System.out.println("Speed Biscuit surges forward...");
+        System.out.println("They're neck and neck down the stretch...");
+        System.out.println("The crowd is on their feet as they approach the finish line!");
+
+        // Player & Opponent rolls
+        int playerPerformance = speed + power + stamina + (rand.nextInt(11) - 5);   // ±5 RNG
+        int opponentPerformance = oppSpeed + oppPower + oppStamina + (rand.nextInt(11) - 5);
+
+        // Reveal stats after narration
+        System.out.println("\n--- Stats ---");
+        System.out.println(horseName + " -> Speed: " + speed + ", Power: " + power + ", Stamina: " + stamina);
+        System.out.println("Speed Biscuit -> Speed: " + oppSpeed + ", Power: " + oppPower + ", Stamina: " + oppStamina);
+
+        System.out.println("\n--- Results ---");
+        System.out.println(horseName + " total performance: " + playerPerformance);
+        System.out.println("Speed Biscuit total performance: " + opponentPerformance);
+
+        if (playerPerformance >= opponentPerformance) {
+            System.out.println("\n🎉 Congratulations! " + horseName + " wins the race!");
+        } else {
+            System.out.println("\n💀 Oh no... Speed Biscuit outran " + horseName + ". Better luck next time!");
+        }
+
         scanner.close();
     }
 
     private static int[] train(String statName, String horseName, Random rand, int energy, int mainStat, int otherStat1, int otherStat2) {
         int chance = rand.nextInt(100) + 1; // 1–100
-        boolean success = (energy * 10 + 1) > chance; // tiny chance even at 0 energy
+        boolean success = (energy * 10 + 1) > chance; 
         boolean bigSuccess = rand.nextInt(10) == 0; // 1/10 chance
 
         if (success) {
@@ -121,13 +153,13 @@ public class horseSim {
             System.out.println(horseName + " trained " + statName + " successfully! +" + gain);
 
             if (bigSuccess) {
-                otherStat1 += 1; // big success bonus
+                otherStat1 += 1; 
                 System.out.println("BIG SUCCESS! Another stat increased by +1!");
             }
         } else {
-            mainStat -= 1;
-            otherStat1 -= 1;
-            otherStat2 -= 1;
+            mainStat = Math.max(0, mainStat - 1);
+            otherStat1 = Math.max(0, otherStat1 - 1);
+            otherStat2 = Math.max(0, otherStat2 - 1);
             System.out.println(horseName + " failed training... -1 to all stats!");
         }
 
