@@ -25,10 +25,10 @@ Horse Simulator is a text-based Java game where you train your horse across 15 t
    ```bash
      java horseSim
 
-##Example Gameplay
+## Example Gameplay
 
--Train speed at 7/10 energy → ~70% chance of success
+- Train speed at 7/10 energy → ~70% chance of success
 
--Rest to regain energy and prepare for stronger training sessions
+- Rest to regain energy and prepare for stronger training sessions
 
--After 15 turns, race against Speed Biscuit with narration
+- After 15 turns, race against Speed Biscuit with narration
