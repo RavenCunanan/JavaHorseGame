@@ -10,7 +10,7 @@ Horse Simulator is a text-based Java game where you train your horse across 15 t
 - **Final Race**: After 15 turns, face off against Speed Biscuit in a narrated race to determine the champion.  
 
 ## How It Works  
-- **Success Rate Formula**: `(energy × 10 + 1) > random(1–100)`  
+- **Success Rate Formula**: `(energy × 12 + 10) > random(1–100)`  
 - **Big Success Chance**: 1 in 10  
 - **Turns**: 15 total before the final race  
 
