@@ -5,7 +5,7 @@ Horse Simulator is a text-based Java game where you train your horse across 15 t
 ## Features  
 - **Training System**: Improve speed, power, or stamina with randomized gains. Success rate depends on your horse’s current energy.  
 - **Big Successes**: Rare chance to boost an extra stat when training.  
-- **Energy Management**: Training consumes 1–2 energy, resting restores 1–5 energy (max 10).  
+- **Energy Management**: Training consumes 1–2 energy, resting restores 2–5 energy (max 10).  
 - **Failure Penalty**: Training can fail, reducing stats — but no stat ever falls below 0.  
 - **Final Race**: After 15 turns, face off against Speed Biscuit in a narrated race to determine the champion.  
 
