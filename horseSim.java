@@ -1,3 +1,6 @@
+//Raven Cunanan Sep 2025
+//Gameplay Hint: Rest at 6/10 energy 
+
 import java.util.Scanner;
 import java.util.Random;
 
