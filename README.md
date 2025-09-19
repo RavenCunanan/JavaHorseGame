@@ -32,3 +32,7 @@ Horse Simulator is a text-based Java game where you train your horse across 15 t
 - Rest to regain energy and prepare for stronger training sessions
 
 - After 15 turns, race against Speed Biscuit with narration
+
+
+## Hints
+Try to rest your horse at 6/10 energy
