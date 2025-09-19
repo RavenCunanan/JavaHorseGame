@@ -42,7 +42,6 @@ public class horseSim {
             System.out.println("Stamina: " + stamina);
 
             int successChance = energy * 10;
-            if (successChance > 95) successChance = 95; // cap at 95%
             System.out.println("\nTraining success chance: " + successChance + "%");
 
             System.out.println("\nChoose an action: ");
@@ -57,7 +56,7 @@ public class horseSim {
             switch (choice) {
                 case "1":
                 case "train speed":
-                    int energyUsedS = rand.nextInt(3) + 1; // 1–3
+                    int energyUsedS = rand.nextInt(2) + 1; // 1–2
                     energy = Math.max(0, energy - energyUsedS);
                     int[] newStatsS = train("Speed", horseName, rand, energy, speed, power, stamina);
                     speed = newStatsS[0];
@@ -67,7 +66,7 @@ public class horseSim {
 
                 case "2":
                 case "train power":
-                    int energyUsedP = rand.nextInt(3) + 1;
+                    int energyUsedP = rand.nextInt(2) + 1;
                     energy = Math.max(0, energy - energyUsedP);
                     int[] newStatsP = train("Power", horseName, rand, energy, power, speed, stamina);
                     power = newStatsP[0];
@@ -77,7 +76,7 @@ public class horseSim {
 
                 case "3":
                 case "train stamina":
-                    int energyUsedSt = rand.nextInt(3) + 1;
+                    int energyUsedSt = rand.nextInt(2) + 1;
                     energy = Math.max(0, energy - energyUsedSt);
                     int[] newStatsSt = train("Stamina", horseName, rand, energy, stamina, speed, power);
                     stamina = newStatsSt[0];
@@ -87,7 +86,7 @@ public class horseSim {
 
                 case "4":
                 case "rest":
-                    int restGain = rand.nextInt(5) + 1; // 1–5
+                    int restGain = rand.nextInt(4) + 2; // 2–5
                     energy = Math.min(10, energy + restGain); // cap at 10
                     System.out.println(horseName + " rests and regains " + restGain + " energy!");
                     break;
@@ -104,11 +103,11 @@ public class horseSim {
             turn++;
         }
 
-        // Opponent Stats (Base 8 + randomness)
+        // Opponent Stats (Base 6 + randomness)
         Random randOpponent = new Random();
-        int oppSpeed = 8 + randOpponent.nextInt(11) - 5;   // ±5
-        int oppPower = 8 + randOpponent.nextInt(11) - 5;
-        int oppStamina = 8 + randOpponent.nextInt(11) - 5;
+        int oppSpeed = 6 + randOpponent.nextInt(11) - 5;   // ±5
+        int oppPower = 6 + randOpponent.nextInt(11) - 5;
+        int oppStamina = 6 + randOpponent.nextInt(11) - 5;
 
         System.out.println("\n--- Final Race ---");
         System.out.println("Your horse " + horseName + " VS Speed Biscuit 🐴");
@@ -144,7 +143,7 @@ public class horseSim {
 
     private static int[] train(String statName, String horseName, Random rand, int energy, int mainStat, int otherStat1, int otherStat2) {
         int chance = rand.nextInt(100) + 1; // 1–100
-        boolean success = (energy * 10 + 1) > chance; 
+        boolean success = (energy * 12 + 10) > chance; //+10% baseline
         boolean bigSuccess = rand.nextInt(10) == 0; // 1/10 chance
 
         if (success) {
