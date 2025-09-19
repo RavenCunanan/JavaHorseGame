@@ -17,7 +17,7 @@ Horse Simulator is a text-based Java game where you train your horse across 15 t
 ## Getting Started  
 1. Clone this repository:  
    ```bash
-   git clone https://github.com/RavenCunanan/Horse-Simulator.git
+   git clone https://github.com/RavenCunanan/JavaHorseGame.git
 2. Compile the game:
    ```bash
     javac horseSim.java
